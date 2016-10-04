@@ -62,6 +62,10 @@ CM.Extended.display = function(id, text, onClick) {
 	document.getElementById("topBar").appendChild(nodeD);
 }
 
-CM.Extended.display("cmext-buyNext", "Buy Next", "CM.Extended.buyGroup(1, 175)");
-CM.Extended.display("cmext-buyTen", "Buy 10", "CM.Extended.buyGroup(10, 175)");
-CM.Extended.display("cmext-toggleSafe", "Safety [ON]", "CM.Extended.toggleSafety()");
+CM.Extended.init = function() {
+	CM.Extended.display("cmext-buyNext", "Buy Next", "CM.Extended.buyGroup(1, 175)");
+	CM.Extended.display("cmext-buyTen", "Buy 10", "CM.Extended.buyGroup(10, 175)");
+	CM.Extended.display("cmext-toggleSafe", "Safety [ON]", "CM.Extended.toggleSafety()");
+}
+
+CM.Extended.init();
