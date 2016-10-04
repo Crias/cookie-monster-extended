@@ -1,14 +1,14 @@
 Game.LoadMod('http://aktanusa.github.io/CookieMonster/CookieMonster.js');
 
-CM.Extended = {};
+CMExtended = {};
 
-CM.Extended.safetyMode = true;
+CMExtended.safetyMode = true;
 
-CM.Extended.alert = function(text, offset) {
+CMExtended.alert = function(text, offset) {
 	Game.Popup(text, (Game.windowW / 2), offset);
 }
 
-CM.Extended.buyNext = function(offset) { 
+CMExtended.buyNext = function(offset) { 
 	for (var i in CM.Cache.Objects) { 
 		CMObj = CM.Cache.Objects[i]
 		CCObj = Game.Objects[i];
@@ -26,7 +26,7 @@ CM.Extended.buyNext = function(offset) {
 	return false;
 }
 
-CM.Extended.buyGroup = function(i, offset) { 
+CMExtended.buyGroup = function(i, offset) { 
 	if (i == 0) return; 
 	else { 
 		var bought = CM.Extended.buyNext(offset); 
@@ -38,7 +38,7 @@ CM.Extended.buyGroup = function(i, offset) {
 	} 
 };
 
-CM.Extended.toggleSafety = function() {
+CMExtended.toggleSafety = function() {
 	var safetyText = "Safety [???]";
 	CM.Extended.safetyMode = !CM.Extended.safetyMode;
 	if (CM.Extended.safetyMode) {
@@ -49,7 +49,7 @@ CM.Extended.toggleSafety = function() {
 	document.getElementById("cmext-toggleSafe").childNodes[0].textContent = safetyText;
 };
 
-CM.Extended.display = function(id, text, onClick) {
+CMExtended.display = function(id, text, onClick) {
 	var nodeD = document.createElement("div");
 	var nodeS = document.createElement("span");
 	var nodeT = document.createTextNode(text);
@@ -62,10 +62,10 @@ CM.Extended.display = function(id, text, onClick) {
 	document.getElementById("topBar").appendChild(nodeD);
 }
 
-CM.Extended.init = function() {
+CMExtended.init = function() {
 	CM.Extended.display("cmext-buyNext", "Buy Next", "CM.Extended.buyGroup(1, 175)");
 	CM.Extended.display("cmext-buyTen", "Buy 10", "CM.Extended.buyGroup(10, 175)");
 	CM.Extended.display("cmext-toggleSafe", "Safety [ON]", "CM.Extended.toggleSafety()");
 }
 
-CM.Extended.init();
+CMExtended.init();
