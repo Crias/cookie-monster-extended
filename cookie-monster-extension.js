@@ -13,12 +13,12 @@ CMExtended.buyNext = function(offset) {
 		CMObj = CM.Cache.Objects[i]
 		CCObj = Game.Objects[i];
 		if(CMObj.color == "Green") { 
-			if (CM.Extended.safetyMode && CM.Cache.lastCookies - CCObj.getPrice() < CM.Cache.LuckyFrenzy) {
-				CM.Extended.alert("Purchases stopped at " + i, offset);
+			if (CMExtended.safetyMode && CM.Cache.lastCookies - CCObj.getPrice() < CM.Cache.LuckyFrenzy) {
+				CMExtended.alert("Purchases stopped at " + i, offset);
 				return false;
 			}
 
-			CM.Extended.alert("Bought  " + i, offset);
+			CMExtended.alert("Bought  " + i, offset);
 			Game.Objects[i].buy(); 
 			return true;
 		} 
@@ -29,10 +29,10 @@ CMExtended.buyNext = function(offset) {
 CMExtended.buyGroup = function(i, offset) { 
 	if (i == 0) return; 
 	else { 
-		var bought = CM.Extended.buyNext(offset); 
+		var bought = CMExtended.buyNext(offset); 
 		if (bought) {
 			setTimeout(function() { 
-				CM.Extended.buyGroup(i - 1, offset + 25); 
+				CMExtended.buyGroup(i - 1, offset + 25); 
 			}, 100) ;
 		}
 	} 
@@ -40,8 +40,8 @@ CMExtended.buyGroup = function(i, offset) {
 
 CMExtended.toggleSafety = function() {
 	var safetyText = "Safety [???]";
-	CM.Extended.safetyMode = !CM.Extended.safetyMode;
-	if (CM.Extended.safetyMode) {
+	CMExtended.safetyMode = !CMExtended.safetyMode;
+	if (CMExtended.safetyMode) {
 		safetyText = "Safety [ON]";
 	} else {
 		safetyText = "Safety [OFF]";
@@ -63,9 +63,9 @@ CMExtended.display = function(id, text, onClick) {
 }
 
 CMExtended.init = function() {
-	CM.Extended.display("cmext-buyNext", "Buy Next", "CM.Extended.buyGroup(1, 175)");
-	CM.Extended.display("cmext-buyTen", "Buy 10", "CM.Extended.buyGroup(10, 175)");
-	CM.Extended.display("cmext-toggleSafe", "Safety [ON]", "CM.Extended.toggleSafety()");
+	CMExtended.display("cmext-buyNext", "Buy Next", "CMExtended.buyGroup(1, 175)");
+	CMExtended.display("cmext-buyTen", "Buy 10", "CMExtended.buyGroup(10, 175)");
+	CMExtended.display("cmext-toggleSafe", "Safety [ON]", "CMExtended.toggleSafety()");
 }
 
 CMExtended.init();
